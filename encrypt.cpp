@@ -7,7 +7,7 @@ int main()
 {
     ifstream fin("passwords.in");
     ofstream fout("encrypted.data");
-    string V[2][4];
+    string V[2][3];
     cout << "Enter encryption key: ";
     int key;
     cin >> key;
@@ -23,8 +23,10 @@ int main()
     {
         cout << "Enter site address: ";
         cin >> V[i][0];
+        fout << V[i][0] << " ";
         cout << "Enter username: ";
         cin >> V[i][1];
+        fout << V[i][1] << " ";
         fin >> V[i][2];
         cout << "Password imported" << endl;
         string password;
@@ -36,5 +38,7 @@ int main()
         cout << "ENCRYPTED PASSWORD: " << password << " | KEY: " << key << " | REMEMBER IT" << endl;
         fout << password << endl;
     }
+    fin.close();
+    remove("passwords.in");
     return 0;
 }
