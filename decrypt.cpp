@@ -30,7 +30,7 @@ int main()
     cout << "Are you sure that " << userKey << " is the correct key? (y/n): ";
     char confirm;
     cin >> confirm;
-    if(confirm != 'n' && confirm != 'N')
+    if(confirm != 'y' && confirm != 'Y')
     {
         cout << "Aborted." << endl;
         return 1;
