@@ -8,6 +8,11 @@ int main()
     ifstream fin("passwords.in");
     ofstream fout("encrypted.data");
     string V[2][3];
+    if(fin.fail())
+    {
+        cout << "Error opening password save file." << endl;
+        return 1;
+    }
     cout << "Enter encryption key: ";
     int key;
     cin >> key;
