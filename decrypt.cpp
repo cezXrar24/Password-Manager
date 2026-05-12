@@ -26,6 +26,15 @@ int main()
     cout << "Enter the correct encryption key: ";
     int userKey;
     cin >> userKey;
+    cout << "Are you sure that " << userKey << " is the correct key? (Y/N): ";
+    char answer;
+    cin >> answer;
+    if(answer == 'N' || answer == 'n')
+    {
+        cout << "Exiting program." << endl;
+        fin.close();
+        return 0;
+    }
     if(userKey == key)
     {
         cout << "Your key is correct. Here are the decrypted passwords:" << endl;
