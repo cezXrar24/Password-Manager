@@ -8,7 +8,7 @@ int main()
 {
     ifstream fin("passwords.in");
     ofstream fout("encrypted.data");
-    string V[2][3];
+    string V[2][4];
     if(fin.fail())
     {
         cout << "Error opening password save file." << endl;
@@ -28,13 +28,11 @@ int main()
         cout << "Enter encryption key: ";
         cin >> key;
         string valid = "VALID";
-        string VALID;
-        for(int i=0; i<5; i++)
+        for(int k=0; k<5; k++)
         {
-            char a = valid[i] + key;
-            VALID += a;
+            char a = valid[k] + key;
+            V[i][3] += a;
         }
-        fout << VALID << " ";
         string password;
         for(int j=0; j<V[i][2].length(); j++)
         {
@@ -42,6 +40,7 @@ int main()
             password += a;
         }
         cout << "ENCRYPTED PASSWORD: " << password << " | KEY: " << key << " | REMEMBER IT" << endl;
+        fout << V[i][3] << " ";
         fout << password << endl;
     }
     fin.close();

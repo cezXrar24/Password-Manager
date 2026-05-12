@@ -5,56 +5,46 @@ using namespace std;
 int main()
 {
     ifstream fin("encrypted.data");
-    string VALID;
-    string valid;
-    string V[2][3];
-    fin >> VALID;
-    int key = 0;
-    while(valid != "VALID")
+    string V[2][4];
+    for(int i=0; i<2; i++)
     {
-        for(int i=0; i<5; i++)
-        {
-            char a = VALID[i] - key;
-            valid += a;
-        }
-        if(valid != "VALID")
-        {
-            key++;
-            valid.clear();
-        }
+        fin >> V[i][0] >> V[i][1] >> V[i][2] >> V[i][3];
     }
-    cout << "Enter the correct encryption key: ";
+    fin.close();
+    cout << "Your saved passwords:" << endl;
+    for(int i=0; i<2; i++)
+    {
+        cout << i << ". Site Address: " << V[i][0] << " | Username: " << V[i][1] << endl;
+    }
+    cout << "Enter the order number of password you want to see: ";
+    int choice;
+    cin >> choice;
+    if(choice < 0 || choice >= 2)
+    {
+        cout << "Invalid choice." << endl;
+        return 1;
+    }
+    cout << "Enter the encryption key: ";
     int userKey;
     cin >> userKey;
-    cout << "Are you sure that " << userKey << " is the correct key? (Y/N): ";
-    char answer;
-    cin >> answer;
-    if(answer == 'N' || answer == 'n')
+    string valid;
+    for(int i=0; i<5; i++)
     {
-        cout << "Exiting program." << endl;
-        fin.close();
-        return 0;
+        char a = V[choice][2][i] - userKey;
+        valid += a;
     }
-    if(userKey == key)
+    if(valid != "VALID")
     {
-        cout << "Your key is correct. Here are the decrypted passwords:" << endl;
-        for(int i=0; i<2; i++)
-        {
-            fin >> V[i][0] >> V[i][1] >> V[i][2];
-            string password;
-            for(int j=0; j<V[i][2].length(); j++)
-            {
-                char a = V[i][2][j] - key;
-                password += a;
-            }
-            cout << "Site Address: " << V[i][0] << " | Username: " << V[i][1] << " | Decrypted Password: " << password << endl;
-            fin.close();
-        }
-    }
-    else{
-        fin.close();
         remove("encrypted.data");
         cout << "Incorrect key. Deleting your data." << endl;
+        return 1;
     }
+    string password;
+    for(int j=0; j<V[choice][3].length(); j++)
+    {
+        char a = V[choice][3][j] - userKey;
+        password += a;
+    }
+    cout << "Site Address: " << V[choice][0] << " | Username: " << V[choice][1] << " | Password: " << password << endl;
     return 0;
 }
