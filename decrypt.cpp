@@ -27,6 +27,14 @@ int main()
     cout << "Enter the encryption key: ";
     int userKey;
     cin >> userKey;
+    cout << "Are you sure that " << userKey << " is the correct key? (y/n): ";
+    char confirm;
+    cin >> confirm;
+    if(confirm != 'n' && confirm != 'N')
+    {
+        cout << "Aborted." << endl;
+        return 1;
+    }
     string valid;
     for(int i=0; i<5; i++)
     {
