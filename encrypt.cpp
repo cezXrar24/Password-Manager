@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 using namespace std;
 
 int main()
@@ -13,17 +14,6 @@ int main()
         cout << "Error opening password save file." << endl;
         return 1;
     }
-    cout << "Enter encryption key: ";
-    int key;
-    cin >> key;
-    string valid = "VALID";
-    string VALID;
-    for(int i=0; i<5; i++)
-    {
-        char a = valid[i] + key;
-        VALID += a;
-    }
-    fout << VALID << endl;
     for(int i=0; i<2; i++)
     {
         cout << "Enter site address: ";
@@ -34,6 +24,17 @@ int main()
         fout << V[i][1] << " ";
         fin >> V[i][2];
         cout << "Password imported" << endl;
+        int key;
+        cout << "Enter encryption key: ";
+        cin >> key;
+        string valid = "VALID";
+        string VALID;
+        for(int i=0; i<5; i++)
+        {
+            char a = valid[i] + key;
+            VALID += a;
+        }
+        fout << VALID << " ";
         string password;
         for(int j=0; j<V[i][2].length(); j++)
         {
